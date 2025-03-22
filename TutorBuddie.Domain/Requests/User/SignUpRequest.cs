@@ -1,6 +1,6 @@
 ﻿namespace TutorBuddie.Domain.Requests.User;
 
-public class SingUpRequest
+public class SignUpRequest
 {
 	public string Name { get; set; }
 	public string Email { get; set; }

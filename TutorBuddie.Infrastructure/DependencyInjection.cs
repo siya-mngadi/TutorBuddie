@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using TutorBuddie.Domain.Configuration;
 using TutorBuddie.Domain.Entities;
 using TutorBuddie.Domain.Repositories;
 using TutorBuddie.Infrastructure.Configuration;
