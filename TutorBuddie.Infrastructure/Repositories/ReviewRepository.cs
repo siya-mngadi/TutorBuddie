@@ -1,17 +1,34 @@
-﻿using TutorBuddie.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TutorBuddie.Domain.Entities;
 using TutorBuddie.Domain.Repositories;
+using TutorBuddie.Infrastructure.Data;
 
 namespace TutorBuddie.Infrastructure.Repositories;
 
 public class ReviewRepository : IReviewRepository
 {
-	public Task<IEnumerable<Review>> GetByTutorIdAsync(int tutorId)
+	private readonly BuddyContext context;
+
+	public IUnitOfWork UnitOfWork => context;
+
+	public ReviewRepository(BuddyContext context)
 	{
-		throw new NotImplementedException();
+		this.context = context;
+	}
+
+	public async Task<IEnumerable<Review>> GetByTutorIdAsync(int tutorId)
+	{
+		return await context
+			.Reviews
+			.AsNoTracking()
+			.Where(x => x.TutorId == tutorId)
+			.ToListAsync();
 	}
 
 	public Review Add(Review details)
 	{
-		throw new NotImplementedException();
+		return context.Reviews
+			.Add(details)
+			.Entity;
 	}
 }

@@ -1,17 +1,35 @@
-﻿using TutorBuddie.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TutorBuddie.Domain.Entities;
 using TutorBuddie.Domain.Repositories;
+using TutorBuddie.Infrastructure.Data;
 
 namespace TutorBuddie.Infrastructure.Repositories;
 
 public class BookingRepository : IBookingRepository
 {
-	public Task<IEnumerable<Booking>> GetByTutorIdAsync(int tutorId)
+	private readonly BuddyContext context;
+
+	public IUnitOfWork UnitOfWork => context;
+
+	public BookingRepository(BuddyContext context)
 	{
-		throw new NotImplementedException();
+		this.context = context;
+	}
+
+	public async Task<IEnumerable<Booking>> GetByTutorIdAsync(int tutorId)
+	{
+		return await context
+			.Bookings
+			.AsNoTracking()
+			.Where(x => x.TutorId == tutorId)
+			.ToListAsync();
 	}
 
 	public Booking Add(Booking details)
 	{
-		throw new NotImplementedException();
+		return context
+			.Bookings
+			.Add(details)
+			.Entity;
 	}
 }
