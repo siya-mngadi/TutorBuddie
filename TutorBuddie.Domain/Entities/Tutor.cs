@@ -8,6 +8,7 @@ public class Tutor
     public string UserId { get; set; }
     public string Description { get; set; }
     public User User { get; set; }
+    public decimal AmountPerHour { get; set; }
 	public IEnumerable<TutorCourse> Courses { get; set; }
 	public IEnumerable<Review> Reviews { get; set; }
 }

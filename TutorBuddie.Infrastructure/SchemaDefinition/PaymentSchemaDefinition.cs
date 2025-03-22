@@ -13,6 +13,9 @@ internal class PaymentSchemaDefinition : IEntityTypeConfiguration<Payment>
 		builder.HasKey(p => p.Id);
 
 		// Properties
+		builder.Property(p => p.PaymentId)
+			.IsRequired();
+
 		builder.Property(p => p.Amount)
 			.IsRequired()
 			.HasColumnType("decimal(18,2)"); // Ensures proper decimal precision

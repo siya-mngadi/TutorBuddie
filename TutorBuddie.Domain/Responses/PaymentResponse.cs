@@ -1,8 +1,8 @@
-using System;
+﻿using TutorBuddie.Domain.Entities;
 
-namespace TutorBuddie.Domain.Entities;
+namespace TutorBuddie.Domain.Responses;
 
-public class Payment
+public class PaymentResponse
 {
 	public int Id { get; set; }
 	public int PaymentId { get; set; }

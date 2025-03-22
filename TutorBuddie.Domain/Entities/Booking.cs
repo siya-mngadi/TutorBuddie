@@ -1,4 +1,3 @@
-using System;
 using TutorBuddie.Domain.Enums;
 
 namespace TutorBuddie.Domain.Entities;

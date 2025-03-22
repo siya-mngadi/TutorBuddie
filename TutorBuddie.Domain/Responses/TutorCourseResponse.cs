@@ -1,6 +1,8 @@
-﻿namespace TutorBuddie.Domain.Entities;
+﻿using TutorBuddie.Domain.Entities;
 
-public class TutorCourse
+namespace TutorBuddie.Domain.Responses;
+
+public class TutorCourseResponse
 {
 	public int TutorId { get; set; }
 	public Tutor Tutor { get; set; }

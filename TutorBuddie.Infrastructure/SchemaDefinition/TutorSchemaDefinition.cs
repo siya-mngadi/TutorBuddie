@@ -16,6 +16,10 @@ internal class TutorSchemaDefinition : IEntityTypeConfiguration<Tutor>
 		builder.Property(t => t.UserId)
 			.IsRequired();
 
+		builder.Property(p => p.AmountPerHour)
+			.IsRequired()
+			.HasColumnType("decimal(18,2)");
+
 		builder.Property(t => t.Description)
 			.HasMaxLength(1000);
 
