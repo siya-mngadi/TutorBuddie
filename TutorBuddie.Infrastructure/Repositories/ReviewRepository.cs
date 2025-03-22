@@ -3,19 +3,14 @@ using TutorBuddie.Domain.Repositories;
 
 namespace TutorBuddie.Infrastructure.Repositories;
 
-public class TutorRepository : ITutorRepository
+public class ReviewRepository : IReviewRepository
 {
-	public Task<IEnumerable<Tutor>> GetAsync()
+	public Task<IEnumerable<Review>> GetByTutorIdAsync(int tutorId)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<Tutor> GetAsync(int id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Tutor Add(Tutor details)
+	public Review Add(Review details)
 	{
 		throw new NotImplementedException();
 	}

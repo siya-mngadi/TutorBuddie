@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TutorBuddie.Domain.Entities;
+using TutorBuddie.Domain.Repositories;
 
-namespace TutorBuddie.Infrastructure.Repositories
+namespace TutorBuddie.Infrastructure.Repositories;
+
+public class BookingRepository : IBookingRepository
 {
-    class BookingRepository
-    {
-    }
+	public Task<IEnumerable<Booking>> GetByTutorIdAsync(int tutorId)
+	{
+		throw new NotImplementedException();
+	}
+
+	public Booking Add(Booking details)
+	{
+		throw new NotImplementedException();
+	}
 }
