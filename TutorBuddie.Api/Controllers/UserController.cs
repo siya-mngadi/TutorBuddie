@@ -26,18 +26,27 @@ public class UserController : ControllerBase
 		var claim = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 		if (claim == null) return Unauthorized();
 
-		var token = await _service.GetUserAsync(claim.Value);
-		return Ok(token);
+		var user = await _service.GetUserAsync(claim.Value);
+		return Ok(user);
 	}
 
 	[AllowAnonymous]
-	[HttpPost("auth")]
+	[HttpPost("login")]
 	public async Task<IActionResult>
-		SignIn(SignInRequest request)
+		Login(SignInRequest request)
 	{
 		var token = await _service.SignInAsync(request);
 		if (token == null) return BadRequest();
 		return Ok(token);
+	}
+
+	[AllowAnonymous]
+	[HttpPost("logout")]
+	public async Task<IActionResult>
+		Logout(SignInRequest request)
+	{
+		await _service.LogoutAsync();
+		return NoContent();
 	}
 
 	[AllowAnonymous]

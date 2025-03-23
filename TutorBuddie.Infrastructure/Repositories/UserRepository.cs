@@ -22,6 +22,11 @@ public class UserRepository : IUserRepository
 		return result.Succeeded;
 	}
 
+	public async Task LogoutAsync()
+	{
+		await _signInManager.SignOutAsync();
+	}
+
 	public async Task<bool> SignUpAsync(User user, string password, CancellationToken cancellationToken = default)
 	{
 		var result = await _userManager.CreateAsync(user, password);

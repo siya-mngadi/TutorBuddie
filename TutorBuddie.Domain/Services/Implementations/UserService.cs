@@ -38,6 +38,11 @@ public class UserService : IUserService
 		return _mapper.Map<UserResponse>(response);
 	}
 
+	public async Task LogoutAsync()
+	{
+		await _userRepository.LogoutAsync();
+	}
+
 	public async Task<UserResponse> SignUpAsync(SignUpRequest request, CancellationToken cancellation = default)
 	{
 		var user = new User()
