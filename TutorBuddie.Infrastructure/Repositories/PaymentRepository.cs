@@ -25,7 +25,7 @@ public class PaymentRepository : IPaymentRepository
 			.ToListAsync();
 	}
 
-	public async Task<Payment> GetAsync(int id)
+	public async Task<Payment> GetAsync(string id)
 	{
 		return await context
 			.Payments

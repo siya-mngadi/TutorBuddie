@@ -19,6 +19,9 @@ internal class BookingSchemaDefinition : IEntityTypeConfiguration<Booking>
 		builder.Property(b => b.CourseId)
 			.IsRequired();
 
+		builder.Property(b => b.BookedAtUtc)
+			.ValueGeneratedOnAdd();
+
 		builder.Property(b => b.Status)
 			.IsRequired()
 			.HasConversion(

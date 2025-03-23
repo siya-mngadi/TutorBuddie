@@ -39,4 +39,12 @@ public class TutorRepository : ITutorRepository
 			.Add(details)
 			.Entity;
 	}
+
+	public Tutor Update(Tutor details)
+	{
+		return context
+			.Tutors
+			.Update(details)
+			.Entity;
+	}
 }

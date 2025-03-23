@@ -6,4 +6,5 @@ public interface IReviewRepository
 {
 	Task<IEnumerable<Review>> GetByTutorIdAsync(int tutorId);
 	Review Add(Review details);
+	Review Update(Review details);
 }

@@ -7,9 +7,11 @@ using Microsoft.IdentityModel.Tokens;
 using TutorBuddie.Domain.Configuration;
 using TutorBuddie.Domain.Entities;
 using TutorBuddie.Domain.Repositories;
+using TutorBuddie.Domain.Services;
 using TutorBuddie.Infrastructure.Configuration;
 using TutorBuddie.Infrastructure.Data;
 using TutorBuddie.Infrastructure.Repositories;
+using TutorBuddie.Infrastructure.Services;
 
 namespace TutorBuddie.Infrastructure;
 
@@ -20,6 +22,9 @@ public static  class DependencyInjection
 		services.AddConfiguration(configuration);
 		services.AddRepositories();
 		services.AddTokenAuthentication(configuration);
+
+		// Add Services
+		services.AddScoped<IPaymentCheckoutService<string>, StripePaymentService>();
 		return services;
 	}
 
@@ -37,6 +42,7 @@ public static  class DependencyInjection
 		services.AddScoped<ICourseRepository, CourseRepository>();
 		services.AddScoped<IPaymentRepository, PaymentRepository>();
 		services.AddScoped<IBookingRepository, BookingRepository>();
+		services.AddScoped<ITutorCourseRepository, TutorCourseRepository>();
 		return services;
 	}
 

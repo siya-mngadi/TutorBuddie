@@ -32,4 +32,12 @@ public class BookingRepository : IBookingRepository
 			.Add(details)
 			.Entity;
 	}
+
+	public Booking Update(Booking details)
+	{
+		return context
+			.Bookings
+			.Update(details)
+			.Entity;
+	}
 }

@@ -12,6 +12,7 @@ public static class DependencyInjection
 	public static IServiceCollection AddDomain(this IServiceCollection services)
 	{
 		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+		services.AddAutoMapper(typeof(DependencyInjection));
 
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IBookingService, BookingService>();

@@ -13,6 +13,9 @@ internal class PaymentSchemaDefinition : IEntityTypeConfiguration<Payment>
 		builder.HasKey(p => p.Id);
 
 		// Properties
+		builder.Property(p => p.Id)
+			.ValueGeneratedNever();
+
 		builder.Property(p => p.PaymentId)
 			.IsRequired();
 

@@ -7,4 +7,5 @@ public interface ITutorRepository
 	Task<IEnumerable<Tutor>> GetAsync();
 	Task<Tutor> GetAsync(int id);
 	Tutor Add(Tutor details);
+	Tutor Update(Tutor details);
 }

@@ -16,34 +16,42 @@ public class CourseRepository : ICourseRepository
 		this.context = context;
 	}
 
-	public async Task<IEnumerable<Tutor>> GetAsync()
+	public async Task<IEnumerable<Course>> GetAsync()
 	{
 		
 		return await context
-			.Tutors
+			.Courses
 			.AsNoTracking()
 			.ToListAsync();
 	}
 
-	public async Task<Tutor> GetAsync(int id)
+	public async Task<Course> GetAsync(int id)
 	{
 		return await context
-			.Tutors
+			.Courses
 			.AsNoTracking()
 			.FirstOrDefaultAsync(x => x.Id == id);
 	}
 
-	public Tutor Add(Tutor details)
+	public Course Add(Course details)
 	{
 		return context
-			.Tutors
+			.Courses
 			.Add(details)
+			.Entity;
+	}
+
+	public Course Update(Course details)
+	{
+		return context
+			.Courses
+			.Update(details)
 			.Entity;
 	}
 
 	public Task Delete(int id)
 	{
-		context.Tutors.Remove(new Tutor { Id = id });
+		context.Courses.Remove(new Course { Id = id });
 		return Task.CompletedTask;
 	}
 }

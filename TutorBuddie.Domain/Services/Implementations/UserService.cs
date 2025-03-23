@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using TutorBuddie.Domain.Configuration;
 using TutorBuddie.Domain.Entities;
 using TutorBuddie.Domain.Enums;
@@ -17,22 +18,24 @@ public class UserService : IUserService
 	private readonly AuthenticationSettings _authenticationSettings;
 	private readonly IUserRepository _userRepository;
 	private readonly ITutorRepository _tutorRepository;
+	private readonly IMapper _mapper;
 
-	public UserService(IUserRepository userRepository, ITutorRepository tutorRepository, IOptions<AuthenticationSettings> settings)
+	public UserService(
+		IUserRepository userRepository, 
+		ITutorRepository tutorRepository, 
+		IMapper mapper, 
+		IOptions<AuthenticationSettings> settings)
 	{
 		_userRepository = userRepository;
 		_tutorRepository = tutorRepository;
+		_mapper = mapper;
 		_authenticationSettings = settings.Value;
 	}
 
 	public async Task<UserResponse> GetUserAsync(string email, CancellationToken cancellation = default)
 	{
 		var response = await _userRepository.GetByEmailAsync(email, cancellation);
-		return new UserResponse
-		{
-			Name = response.Name,
-			Email = response.Email
-		};
+		return _mapper.Map<UserResponse>(response);
 	}
 
 	public async Task<UserResponse> SignUpAsync(SignUpRequest request, CancellationToken cancellation = default)
@@ -52,11 +55,7 @@ public class UserService : IUserService
 
 		if(request.IsTutor) _ = _tutorRepository.Add(new Tutor { UserId = result.Id});
 
-		return new UserResponse
-			{
-				Name = result.Name,
-				Email = result.Email
-			};
+		return _mapper.Map<UserResponse>(result);
 	}
 
 	public async Task<TokenResponse> SignInAsync(SignInRequest request, CancellationToken cancellation = default)

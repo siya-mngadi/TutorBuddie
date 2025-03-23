@@ -27,8 +27,17 @@ public class ReviewRepository : IReviewRepository
 
 	public Review Add(Review details)
 	{
-		return context.Reviews
+		return context
+			.Reviews
 			.Add(details)
+			.Entity;
+	}
+
+	public Review Update(Review details)
+	{
+		return context
+			.Reviews
+			.Update(details)
 			.Entity;
 	}
 }
